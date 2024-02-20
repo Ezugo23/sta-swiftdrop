@@ -4,7 +4,7 @@ import AllUserSection from '../../components/section/allUsers'
 import '../../components/styles/dashboard-styles/styles.css'
 import '../../App.css'
 
-export default function allUsers() {
+export default function AllUserPage() {
 
   return (
     <>

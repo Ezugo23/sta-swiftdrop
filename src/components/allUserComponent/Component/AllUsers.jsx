@@ -1,13 +1,49 @@
-/* eslint-disable react/prop-types */
+import React, { useEffect, useState } from "react";
+import "../Style/Allusers.css";
+// import dele from "../assets/delete-bin-line.jpg";
+// import susp from "../assets/Suspend.jpg";
+// import edit from "../assets/Edit (2).jpg";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import DeleteModel from "../Component/DeleteModel";
+import Search from "../Component/Search";
 
-export default function AdministratorsComponent() {
+const AllUsers = (_id) => {
+  const [data, setData] = useState([]);
+  const token = localStorage.getItem("token");
+  const [show, setShow] = useState(false);
+  const [userId, setUserId] = useState(null);
 
-    return (
+  const getData = async () => {
+    try {
+      let data = await fetch("https://swifdropp.onrender.com/api/v1/user/profile", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+      });
 
-        <>
+      const respond = await data.json();
+      console.log(respond);
+      setData(respond);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-<div className="container">
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const handleDelete = async (userId) => {
+    setShow(true);
+    setUserId(userId)
+  };
+
+  return (
+    <>
+      <div className="">
         <div className="d-flex justify-content-between my-5">
           <h5 className="">All Users</h5>
           <button className="top-btn">
@@ -34,7 +70,7 @@ export default function AdministratorsComponent() {
               </select>
               <p>entries</p>
             </div>
-            {/* <Search/> */}
+            <Search/>
           </div>
           <div className="">
             <table className="tablediv">
@@ -49,7 +85,7 @@ export default function AdministratorsComponent() {
                 <th>ACTION</th>
               </tr>
 
-              {/* {data.map((datum) => {
+              {data.map((datum) => {
                 const { address, username, email, image, phoneNumber, _id } =
                   datum;
                 return (
@@ -57,7 +93,7 @@ export default function AdministratorsComponent() {
                     <td>03DR456</td>
                     <td className="tableimg">
                       {" "}
-                      <img src={image} alt="" className="rounded tableimg" />
+                      <img src={image} alt="" className="rounded-5" style={{width:'2rem'}}/>
                     </td>
                     <td>
                       <h6>{username}</h6>
@@ -67,7 +103,7 @@ export default function AdministratorsComponent() {
                      <p>{address.zipCode}</p>
                      <p>{address.city}</p>
                      <p>{address.street}</p> */}
-                     {/* </div>
+                     </div>
                     </td>
                     <td>{phoneNumber}</td>
                     <td>{email}</td>
@@ -76,42 +112,45 @@ export default function AdministratorsComponent() {
                     </td>
                     <td>$235.55</td>
                     <td>
-                      <Link to={`/EditUsers/${_id}`}>
-                        <button className="btn"> */}
+                      <Link to={`/all-user/EditUsers/${_id}`}>
+                        <button className="btn">
                           {/* <img
                             src={edit}
                             alt=""
                             className="img-w rounded-pill"
                           /> */}
-                          {/* Edit
+                          Edit
                         </button>
                       </Link>
-                      <Link to="/Suspend">
+                      <Link to="/all-user/Suspend">
                         <button className="btn">
-                         
+                          {/* <img
+                            src={susp}
+                            alt=""
+                            className="img-w rounded-pill"
+                          /> */}
                           Suspend
                         </button>
                       </Link>
-                      <button className="btn" >
+                      <button className="btn" onClick={() => handleDelete(_id)}>
                         {/* <img src={dele} alt="" className="img-w rounded-pill" /> */}
-                        {/* Delete
+                        Delete
                       </button>
                     </td>
                   </tr>
                 );
-              })}  */}
+              })}
             </table>
           </div>
           <div className="d-flex justify-content-between mt-5">
-            {/* <p>Showing 20-30 from {data.length} data</p> */}
+            <p>Showing 20-30 from {data.length} data</p>
             <p>1</p>
           </div>
         </div>
-        {/* {show && <DeleteModel setShow={setShow} userId={userId}/> } */}
+        {show && <DeleteModel setShow={setShow} userId={userId}/> }
       </div>
-            
-        </>
+    </>
+  );
+};
 
-    )
-
-}
+export default AllUsers;

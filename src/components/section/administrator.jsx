@@ -1,5 +1,8 @@
-import { Link } from "react-router-dom";
-import AdministratorsComponent from "../administratorComponent/hello/index"
+import { Link, Route, Routes } from "react-router-dom";
+// import AdministratorsComponent from "../administratorComponent/hello/index"
+import AdminAllUsers from "../administratorComponent/Component/AdminAllUsers";
+import AdminUsersChangePass from "../administratorComponent/Component/AdminUsersChangePass";
+import AdminEditUsers from "../administratorComponent/Component/AdminEditUsers";
 export default function AdministratorSection() {
 
     return (
@@ -18,7 +21,11 @@ export default function AdministratorSection() {
                     </nav>
                 </div>
                 <div className="py-2">
-                    <AdministratorsComponent/>
+                <Routes>
+                    <Route path="" element={<AdminAllUsers/>} />
+                    <Route path="AdminEditUsers/:adminId" element={<AdminEditUsers/>} />
+                    <Route path="AdminUsersChangePass" element={<AdminUsersChangePass />} />
+                    </Routes>
                 </div>
             </div>
 
