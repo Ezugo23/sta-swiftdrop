@@ -73,7 +73,7 @@ export default function App() {
 
           <Route 
             exact
-            path="/profile"
+            path="/profile/*"
             element={<ProfilePage />}
           />
           <Route 
