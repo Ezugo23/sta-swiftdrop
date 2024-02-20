@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import RegisterImage from '../../Asset/image container.svg';
 import star from '../../Asset/star 1.svg';
@@ -18,10 +18,48 @@ export default function Register() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassWord] = useState("");
   const [error, setError] = useState("");
+  const [passwordStrength, setPasswordStrength] = useState("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+        setPasswordStrength("");
+    }, 2000);
+
+    // Clear timeout if the component is unmounted or passwordStrength changes
+    return () => clearTimeout(timer);
+}, [passwordStrength]);
+
+const handlePasswordChange = (e) => {
+  const pass = e.target.value;
+
+  // Regular expressions for checking password criteria
+  const atLeast8Chars = pass.length >= 8;
+  const hasUpperCase = /[A-Z]/.test(pass);
+  const hasLowerCase = /[a-z]/.test(pass);
+  const hasNumber = /\d/.test(pass);
+  const hasSymbol = /[^\w\s]/.test(pass);
+
+  if (atLeast8Chars && hasUpperCase && hasLowerCase && hasNumber && hasSymbol) {
+    setPasswordStrength('Strong');
+  } 
+    // Invalid password
+    else {
+      setPasswordStrength('Invalid Password');
+    }
+    // Update password state
+    setPassWord(pass);
+  };
   const handleSubmit = async () => {
-    // e.preventDefault()
+    if (!firstname || !lastname || !email || !password || !phoneNumber || !token || !zipCode || !state || !street || !city) {
+      setError('All fields are required');
+      return;
+    }
+
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setError('Please enter a valid email address');
+      return;
+    }
 
     const bodyPassed = {
       firstname,
@@ -39,24 +77,26 @@ export default function Register() {
     };
 
     try {
-      const data = await fetch(
-        "https://swifdropp.onrender.com/api/v1/register-superAdmin",
-        { 
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(bodyPassed),
-        }
-      );
-      const response = await data.json();
+      const response = await axios.post('https://swifdropp.onrender.com/api/v1/register-superAdmin', bodyPassed);
+
       console.log(response);
-      navigate("/Login");
-    } catch (error) {
-      if (error.response && error.response.data && error.response.data.message) {
-        setError(error.response.data.message);
+
+      // Check if the response status is 409 (Conflict)
+      if (response.status === 409) {
+        setError('This Credentials has been Used');
       } else {
-        setError("An error occurred while processing your request. Please try again later.");
+        // Registration successful
+        setError('SuperAdmin Registered');
+  
+        setTimeout(() => {
+          navigate('/Login');
+        }, 2000);
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        setError('Error in input fields');
+      } else {
+        setError('This Email has been Used ');
       }
     }
   };
@@ -90,7 +130,7 @@ export default function Register() {
           <h1 className="my-3 text-center">Become our partner</h1>
           {error && <div className="text-danger text-center">{error}</div>}
 
-           <form action="">
+          <form>
             <div className="d-flex justify-content-between">
               <div className="my-2 me-1">
               <label htmlFor="" className="label">
@@ -131,8 +171,9 @@ export default function Register() {
               placeholder=""
               className="w-100 rounded p-2 mb-3"
               value={password}
-              onChange={(e) => setPassWord(e.target.value)}
+              onChange={handlePasswordChange}
             />
+            <div className="text-danger">{passwordStrength}</div>
             <label htmlFor="" className="label">
               Phone Number
             </label>
