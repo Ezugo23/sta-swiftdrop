@@ -1,8 +1,22 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DriverOweAmountComponent from "../driverOweAmountComponent/hello";
-
+import React, { useEffect, useState } from 'react';
 export default function DriverOweAmountSection() {
+    const [authenticated, setAuthenticated] = useState(false);
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      // Check if the token is present in localStorage
+      const token = localStorage.getItem('token');
+      if (token) {
+        // If token is present, set authentication to true
+        setAuthenticated(true);
+      } else {
+        // If token is not present, redirect the user to the login page
+        navigate('/SuperLogin');
+      }
+    }, [history]);
 
     return (
 
@@ -22,7 +36,11 @@ export default function DriverOweAmountSection() {
                 </div>
 
                 <div className="py-2">
+                {authenticated && (
+              <>
                     <DriverOweAmountComponent/>
+                    </>
+                )}
                 </div>
             </div>
 

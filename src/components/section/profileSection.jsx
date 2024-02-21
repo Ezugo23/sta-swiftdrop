@@ -1,4 +1,5 @@
-import { Link, Routes, Route } from 'react-router-dom';
+import { Link, Routes, Route, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import ProfileComponent from '../profileComponent/hello/index';
 import Password from '../../components/profileComponent/hello/Password';
 import Account from '../../components/profileComponent/hello/Account';
@@ -6,6 +7,20 @@ import User from '../../components/profileComponent/hello/User';
 import Payment from '../../components/profileComponent/hello/Payment';
 
 export default function ProfileSection() {
+  const [authenticated, setAuthenticated] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if the token is present in localStorage
+    const token = localStorage.getItem('token');
+    if (token) {
+      // If token is present, set authentication to true
+      setAuthenticated(true);
+    } else {
+      // If token is not present, redirect the user to the login page
+      navigate('/SuperLogin');
+    }
+  }, [history]);
   return (
     <>
       <div className="height">
@@ -28,6 +43,9 @@ export default function ProfileSection() {
         </div>
         <div className="flex">
           <div className="main">
+            
+          {authenticated && (
+            <>
             <ProfileComponent />
             <Routes>
               <Route path="Account" element={<Account />} />
@@ -35,6 +53,8 @@ export default function ProfileSection() {
               <Route path="User" element={<User />} />
               <Route path="Payment" element={<Payment />} />
             </Routes>
+            </>
+          )}
           </div>
         </div>
       </div>

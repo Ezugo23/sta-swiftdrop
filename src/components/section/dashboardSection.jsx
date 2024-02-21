@@ -1,9 +1,24 @@
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import RightSideBar from '../dashboardComponent/bar/RightSideBar';
 import GoogleMapComponent from '../dashboardComponent/google/GoogleMapComponent';
-import React from 'react';
 
 function DashboardSection() {
+  const [authenticated, setAuthenticated] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if the token is present in localStorage
+    const token = localStorage.getItem('token');
+    if (token) {
+      // If token is present, set authentication to true
+      setAuthenticated(true);
+    } else {
+      // If token is not present, redirect the user to the login page
+      navigate('/SuperLogin');
+    }
+  }, [history]);
+
   return (
     <>
       <div className="height">
@@ -35,13 +50,18 @@ function DashboardSection() {
               gap: '1rem',
             }}
           >
-            <GoogleMapComponent />
-
-            <RightSideBar />
+            {/* Only render components if user is authenticated */}
+            {authenticated && (
+              <>
+                <GoogleMapComponent />
+                <RightSideBar />
+              </>
+            )}
           </div>
         </div>
       </div>
     </>
   );
 }
+
 export default React.memo(DashboardSection);
