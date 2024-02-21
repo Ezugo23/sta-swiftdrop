@@ -20,7 +20,7 @@ const LandingPage = () => {
            <div className='text-center '>
            <DropdownButton id="dropdown-item-button" title="SignUp/SignIn" variant=' w-50 bg-success'>
            <Dropdown.Item href="Register" >Admin</Dropdown.Item>
-            <Dropdown.Item href='#'>SuperAdmin</Dropdown.Item>
+            <Dropdown.Item href='SuperRegister'>SuperAdmin</Dropdown.Item>
             </DropdownButton>
            </div>
         </div>

@@ -6,10 +6,18 @@ export default function DashbaordSidebar(props) {
 
     // Function to handle logout
     const handleLogout = () => {
-      // Clear user authentication token from localStorage or wherever it's stored
-      localStorage.removeItem('token');
-      // Redirect the user to the login page
-      navigate('/Login');
+        // Check if the user is logged in as superadmin or admin
+        const isAdmin = localStorage.getItem('isAdmin') === 'true';
+
+        // Clear user authentication token from localStorage or wherever it's stored
+        localStorage.removeItem('token');
+        
+        // Redirect the user to the appropriate login page based on their role
+        if (isAdmin) {
+            navigate('/Login');
+        } else  {
+            navigate('/superLogin');
+        }
     };
     return (
 

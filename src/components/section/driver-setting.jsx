@@ -1,9 +1,24 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ManageRegion from '../driverSettingComponents/tab3/ManageRegion';
 import DriverSettings from '../driverSettingComponents/DriverSettings';
+import React, { useEffect, useState } from 'react';
 import Render from '../driverSettingComponents/render';
 
 export default function DriverSettingSection() {
+  const [authenticated, setAuthenticated] = useState(false);
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      // Check if the token is present in localStorage
+      const token = localStorage.getItem('token');
+      if (token) {
+        // If token is present, set authentication to true
+        setAuthenticated(true);
+      } else {
+        // If token is not present, redirect the user to the login page
+        navigate('/SuperLogin');
+      }
+    }, [history]);
   return (
     <>
       <div className="height">
@@ -34,8 +49,12 @@ export default function DriverSettingSection() {
         </div>
 
         <div className="py-2">
+        {authenticated && (
+              <>
           <DriverSettings />
           {/* <Render /> */}
+          </>
+        )}
         </div>
       </div>
     </>

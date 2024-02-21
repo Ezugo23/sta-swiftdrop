@@ -1,8 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GeneralSettingComponent from "../generalSettingComponent/hello";
 import GeneralSettings from "../generalSettingComponent/GeneralSettings";
+import React, { useEffect, useState } from 'react';
 
 export default function generalSetting() {
+    const [authenticated, setAuthenticated] = useState(false);
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      // Check if the token is present in localStorage
+      const token = localStorage.getItem('token');
+      if (token) {
+        // If token is present, set authentication to true
+        setAuthenticated(true);
+      } else {
+        // If token is not present, redirect the user to the login page
+        navigate('/SuperLogin');
+      }
+    }, [history]);
     return (
 
         <>
@@ -22,8 +37,12 @@ export default function generalSetting() {
                 <div className="py-2">
                 <div className="flex">
                 <div className="main">
+                {authenticated && (
+              <>
                     <GeneralSettingComponent/>
                     <GeneralSettings/>
+                    </>
+                )}
                     </div>
                     </div>
                 </div>

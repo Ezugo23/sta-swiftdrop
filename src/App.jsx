@@ -45,14 +45,16 @@ import CouponsPage from "./pages/food-seller-list/coupons";
 import CouponsEditPage from "./pages/food-seller-list/coupons/couponsEdit";
 import ManageWorkDaysPage from "./pages/food-seller-list/manageWorkDays";
 import AllReviewsPage from "./pages/food-seller-list/allReviews";
+import SuperRegister from "./pages/Register/Register";
+import SuperLogin from "./pages/Login/Login"
 import { Toaster } from 'react-hot-toast';
 
 
 export default function App() {
 
   return (
-
-    <>
+    
+    <div>
     <Router>
         <Routes>
           {/* This route is for home component 
@@ -73,7 +75,7 @@ export default function App() {
 
           <Route 
             exact
-            path="/profile"
+            path="/profile/*"
             element={<ProfilePage />}
           />
           <Route 
@@ -188,13 +190,23 @@ export default function App() {
           />
           <Route 
             exact
+            path="/SuperRegister"
+            element={<SuperRegister />}
+          />
+           <Route 
+            exact
+            path="/SuperLogin"
+            element={<SuperLogin />}
+          />
+          <Route 
+            exact
             path="/general-setting"
             element={<GeneralSettingPage />}
           />    
         </Routes>
       </Router>
       <Toaster/>
-        </>
+        </div>
 
         )
 

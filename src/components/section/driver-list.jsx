@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
 import DriverListComponent from "../driverListComponent/hello";
 import Info from "../driverListComponent/info";
 import Menu from "../driverListComponent/menu"
@@ -11,10 +10,24 @@ import Vehicle from "../driverListComponent/Vehicle"
 import Delivery from "../driverListComponent/Delivery"
 import Payout from "../driverListComponent/Payout"
 import Pmanage from "../driverListComponent/Pmanage"
-import {Route, Routes, Outlet} from "react-router-dom"
+import {Route, Routes, Outlet, Link, useNavigate} from "react-router-dom"
 import "../profileComponent/style/App.css"
 
 export default function DriversListSection() {
+    const [authenticated, setAuthenticated] = useState(false);
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      // Check if the token is present in localStorage
+      const token = localStorage.getItem('token');
+      if (token) {
+        // If token is present, set authentication to true
+        setAuthenticated(true);
+      } else {
+        // If token is not present, redirect the user to the login page
+        navigate('/SuperLogin');
+      }
+    }, [history]);
 
     return (
 
@@ -37,6 +50,8 @@ export default function DriversListSection() {
                 <div className="py-2">
                 <div className="fles">
                     {/*<Menu/>*/}
+                    {authenticated && (
+              <>
                     <Routes>
                     <Route path="" element={<DriverListComponent/>}/>
                         <Route path="Info" element={<Info/>}/>
@@ -59,6 +74,8 @@ export default function DriversListSection() {
                          <Route path="Pmanage" element={<Pmanage />} />
                         </Route>
                     </Routes>
+                    </>
+                    )}
                     </div>
                 </div>
             </div>

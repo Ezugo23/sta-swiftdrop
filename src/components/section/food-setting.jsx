@@ -1,12 +1,26 @@
-import { Link } from "react-router-dom";
 import FoodSettingComponent from "../foodSettingComponent/hello";
 import Percent from "../foodSettingComponent/percent"
 import Foodmenu from "../foodSettingComponent/foodMenu"
 import AddEdit from "../foodSettingComponent/addEdit"
 import SetMenu from "../foodSettingComponent/SetMenu"
 import Review from "../foodSettingComponent/Review"
-import { Route, Routes} from "react-router-dom"
+import { Route, Routes, Link, useNavigate} from "react-router-dom"
+import React, { useEffect, useState } from 'react';
 export default function SettingSection() {
+    const [authenticated, setAuthenticated] = useState(false);
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      // Check if the token is present in localStorage
+      const token = localStorage.getItem('token');
+      if (token) {
+        // If token is present, set authentication to true
+        setAuthenticated(true);
+      } else {
+        // If token is not present, redirect the user to the login page
+        navigate('/SuperLogin');
+      }
+    }, [history]);
 
     return (
 
@@ -25,6 +39,8 @@ export default function SettingSection() {
                 <div className="py-2">
                 <div className="flex">
                 <div className="main">
+                {authenticated && (
+              <>
                     <FoodSettingComponent/>
                     <Routes>
                         <Route path="Foodmenu" element={ <Foodmenu/>}/>
@@ -33,6 +49,8 @@ export default function SettingSection() {
                         <Route path="Review" element={ <Review/>}/>
                         <Route path="SetMenu" element={ <SetMenu/>}/>
                     </Routes>
+                    </>
+                )}
                     </div>
                     </div>
                 </div>

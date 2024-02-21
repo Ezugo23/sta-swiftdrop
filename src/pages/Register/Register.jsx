@@ -3,7 +3,7 @@ import axios from 'axios';
 import RegisterImage from '../../Asset/image container.svg';
 import star from '../../Asset/star 1.svg';
 import profile from '../../Asset/BG.svg';
-import {  useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Register() {
 
@@ -89,7 +89,7 @@ const handlePasswordChange = (e) => {
         setError('SuperAdmin Registered');
   
         setTimeout(() => {
-          navigate('/Login');
+          navigate('/SuperLogin');
         }, 2000);
       }
     } catch (error) {
@@ -251,7 +251,8 @@ const handlePasswordChange = (e) => {
                 </div>
 
           <div className="text-center d-flex justify-content-between justify-content-lg-center ">
-            <h5> Already have an account?</h5>
+          <h5> Already have an account?</h5> 
+            <Link to='/SuperLogin'><h5 style={{color:"gold"}}>LogIn</h5></Link>
           </div>
         </div>
       </div>
