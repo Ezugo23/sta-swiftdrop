@@ -15,7 +15,7 @@ export default function AddEditFoodObjectComponent() {
     const value = e.target.value;
     if (value.length <= 6) {
       setZipcode(value);
-    }
+    } 
   };
   const handleFileChange = (e) => {
     console.log('File change event triggered');
