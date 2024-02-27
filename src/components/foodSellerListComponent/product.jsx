@@ -287,7 +287,7 @@ export default function FoodSellerCustomerComponent() {
 
                         {/* Red Footer */}
 
-                        <div className="card inner-card bg-danger text-white mb-3">
+                        {/* <div className="card inner-card bg-danger text-white mb-3">
                             <div className="card-header between-flex">
                             <span>Important Information!</span>
                             <button className="btn btn-white bg-white text-danger">New</button>
@@ -314,7 +314,7 @@ export default function FoodSellerCustomerComponent() {
                             </div>
                             
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* White Footer */}
 

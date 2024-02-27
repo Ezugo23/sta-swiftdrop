@@ -58,6 +58,32 @@ export default function FoodSellListComponent() {
       console.error('Error deleting data:', error);
     }
   };
+  const toggleRestaurantStatus = async (id, currentStatus) => {
+    try {
+      const response = await fetch(`https://swifdropp.onrender.com/api/v1/${id}/toggle-restaurant-status`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          isActive: !currentStatus, // Toggle the status
+        }),
+      });
+  
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(`Failed to toggle restaurant status. Server response: ${errorMessage}`);
+      }
+  
+      console.log(`Restaurant status toggled successfully`);
+      fetchData();
+    } catch (error) {
+      console.error('Error toggling restaurant status:', error);
+    }
+  };
+  
+
+
 
 
   const getStatusStyle = (approved, isActive) => {
@@ -167,7 +193,16 @@ export default function FoodSellListComponent() {
                                   <path fillRule="evenodd" clipRule="evenodd" d="M4.82362 11.7455H1.99792V9.1225L9.61325 2.0536C9.87331 1.81227 10.2949 1.81227 10.5549 2.0536L12.4389 3.80243C12.6989 4.04383 12.6989 4.43514 12.4389 4.67654L4.82362 11.7455ZM4.27153 10.5091L11.0258 4.23949L10.0841 3.36538L3.32986 9.63498V10.5091H4.27153ZM13.9853 12.9818H1.99792V14.2182H13.9853V12.9818Z" fill="black" />
                                 </svg>
                               </Link>
-                              <Link
+                              <button   className="btn btn-sm"
+                             onClick={() => toggleRestaurantStatus(data._id,data.isActive)}
+                              
+                            >
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                  <path fillRule="evenodd" clipRule="evenodd" d="M14.3334 5.378L10.624 1.66667H5.37735L1.66669 5.37733V10.624L5.37735 14.3333H10.624L14.3334 10.6247V5.378ZM5.92935 3H10.0714V3.00067L13.0007 5.92933V10.072L10.0714 13.0013H5.92935L3.00069 10.072V5.93L5.92935 3ZM7.33335 10H8.66669V11.3333H7.33335V10ZM8.66669 4.66667H7.33335V8.66667H8.66669V4.66667Z" fill="black"/>
+                                </svg>
+                              
+                            </button>
+                              {/* <Link
                                 data-toggle="tooltip"
                                 data-placement="top"
                                 title="Suspend"
@@ -175,7 +210,8 @@ export default function FoodSellListComponent() {
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                                   <path fillRule="evenodd" clipRule="evenodd" d="M14.3334 5.378L10.624 1.66667H5.37735L1.66669 5.37733V10.624L5.37735 14.3333H10.624L14.3334 10.6247V5.378ZM5.92935 3H10.0714V3.00067L13.0007 5.92933V10.072L10.0714 13.0013H5.92935L3.00069 10.072V5.93L5.92935 3ZM7.33335 10H8.66669V11.3333H7.33335V10ZM8.66669 4.66667H7.33335V8.66667H8.66669V4.66667Z" fill="black"/>
                                 </svg>
-                              </Link>
+                              </Link> */}
+                            
                               
                               <button
                                 onClick={() => deleteData(data._id)}
