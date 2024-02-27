@@ -1,7 +1,7 @@
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import AllUsers from "../allUserComponent/Component/AllUsers.jsx";
-import EditUsers from "../allUserComponent/Component/EditUsers.jsx";
+import EditUsers from '../allUserComponent/Component/EditUsers.jsx';
 import UserChangePass from "../allUserComponent/Component/UsersChangePass.jsx";
 import PayMethod from "../allUserComponent/Component/PayMethod.jsx";
 import AllUsersEditAddress from "../allUserComponent/Component/AllUsersEditAddress.jsx";
@@ -43,12 +43,12 @@ export default function allUserSection() {
               <>
                     <Routes>
                     <Route path="" element={<AllUsers/>} />
-                    <Route path="EditUsers/:adminId" element={<EditUsers/>} />
-                    <Route path="OrderHistory" element={<OrderHistory />} />
-                    <Route path="PayMethod" element={<PayMethod/>} />
-                    <Route path="UsersChangePass" element={<UserChangePass />} />
-                    <Route path="AllusersEditAddress" element={<AllUsersEditAddress />} />
-                    <Route path="AddAddress" element={<AddAddress />} />
+                    <Route path="EditUsers/:userId" element={<EditUsers/>} />
+                    <Route path="OrderHistory/:userId" element={<OrderHistory />} />
+                    <Route path="PayMethod/:userId" element={<PayMethod/>} />
+                    <Route path="UsersChangePass/:userId" element={<UserChangePass />} />
+                    <Route path="AllusersEditAddress/:userId" element={<AllUsersEditAddress />} />
+                    <Route path="AddAddress/:userId" element={<AddAddress />} />
                     </Routes>
                     </>
                 )}

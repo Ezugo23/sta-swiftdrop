@@ -8,8 +8,9 @@
 }
 
 .topsideimg{
-    width: 5rem;
-    border-radius: 4rem;
+    width: 60px;
+    border-radius: 70%;
+    height: 100px;
 }
 
 .topsidediv{
