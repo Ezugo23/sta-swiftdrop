@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
   
+  
 } from "react-router-dom";
 
 //Admin
@@ -48,6 +49,8 @@ import AllReviewsPage from "./pages/food-seller-list/allReviews";
 import SuperRegister from "./pages/Register/Register";
 import SuperLogin from "./pages/Login/Login"
 import { Toaster } from 'react-hot-toast';
+import EditFoodSellerCustomerPage from './pages/food-seller-list/editFoodListPage/foodSellerCustomer';
+import FoodSellerCustomerComponent from "./components/foodSellerListComponent/product";
 
 
 export default function App() {
@@ -56,6 +59,7 @@ export default function App() {
     
     <div>
     <Router>
+   
         <Routes>
           {/* This route is for home component 
           with exact path "/", in component props 
@@ -106,10 +110,21 @@ export default function App() {
           />
           <Route 
             exact
-            path="/food-seller-list"
+            path="/food-seller-list/"
             element={<FoodSellerListPage />}
           />
-          <Route exact path="/food-seller-list/:slug" element={<FoodSellerCustomerPage />} />
+         <Route
+            exact
+            path="/food-seller-list/:id"
+            element={<FoodSellerCustomerPage />}
+          />
+          <Route
+            exact
+            path="/edit-food-seller-list/:id"
+            element={<EditFoodSellerCustomerPage />}
+          />
+          <Route exact path="/food-seller-list/:id" element ={< FoodSellerCustomerComponent/>}/>
+
           <Route 
             exact
             path="/food-seller-list/add-and-edit-food"
@@ -204,6 +219,7 @@ export default function App() {
             element={<GeneralSettingPage />}
           />    
         </Routes>
+       
       </Router>
       <Toaster/>
         </div>

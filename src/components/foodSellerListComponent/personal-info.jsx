@@ -2,11 +2,18 @@ import React, { useState, useEffect } from 'react';
 import FoodSellListSidebar from "./foodSellListSidebar";
 import ImageUploadButton from "./uploadImage";
 import { useParams } from 'react-router-dom';
+import Select from 'react-select';
 
 export default function FoodSellerCustomerComponent() {
     const [restaurant, setRestaurant] = useState({});
     const [loading, setLoading] = useState(true);
     const { id } = useParams();
+    const [selectedAdminStatus, setSelectedAdminStatus] = useState(null);
+
+    const AdminStatusOptions = [
+        { value: 'approved', label: 'approve' },
+        { value: 'Inactive', label: 'Inactive' },
+    ];
 
     useEffect(() => {
         const fetchRestaurantDetails = async () => {
@@ -32,6 +39,31 @@ export default function FoodSellerCustomerComponent() {
         fetchRestaurantDetails();
     }, [id]);
 
+    const handleAdminStatusChange = (selectedOption) => {
+        setSelectedAdminStatus(selectedOption);
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch(`https://swifdropp.onrender.com/api/v1/approve-restaurant/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    approved: selectedAdminStatus.value === 'approved' ? true : false,
+                }),
+            });
+            const data = await response.json();
+            console.log('Approval response:', data);
+            // You may want to handle success or display a message to the user upon successful update.
+        } catch (error) {
+            console.error('Error updating approval status:', error);
+            // Handle error cases here
+        }
+    };
+
     return (
         <>
             <div className="row">
@@ -44,7 +76,7 @@ export default function FoodSellerCustomerComponent() {
                             <div className="card-body">
                                 <div className="card inner-card mb-3">
                                     <div className="card-header bg-white">
-                                        Owners’ Personal Information
+                                        Restaurant Information
                                     </div>
                                     <div className="card-body">
                                         <div className="row">
@@ -71,6 +103,12 @@ export default function FoodSellerCustomerComponent() {
                                                         <input id="emailAddress" type="email" className="form-control"
                                                             name="emailAddress" placeholder="mail@yourmail.com" value={restaurant.email} readOnly />
                                                     </div>
+                                                    <div className="form-group col-md-12">
+                                                        <label htmlFor="emailAddress">Business Licencse
+                                                            <span className="required">*</span></label>
+                                                        <input id="emailAddress" type="email" className="form-control"
+                                                            name="emailAddress" placeholder="mail@yourmail.com" value={restaurant.businessLicense} readOnly />
+                                                    </div>
                                                     {/* Additional Information */}
                                                     <div className="form-group col-md-12 mb-2">
                                                         <label htmlFor="address">Address
@@ -93,6 +131,39 @@ export default function FoodSellerCustomerComponent() {
                                         </div>
                                     </div>
                                 </div>
+                                <div className="card inner-card mb-3">
+                            <div className="card-header between-flex">
+                                <span>Admins’ Review Status</span>
+                            
+                            </div>
+                            <div className="card-body">
+                                
+
+                                <div className="col-md-12  pb-3">
+                                    <div className="row" style={{}}>
+
+                                    
+                                        <div className="form-group col-md-9">
+                                            <label htmlFor="statusSelect">Review Status</label>
+                                            <Select
+                                                value={selectedAdminStatus}
+                                                onChange={handleAdminStatusChange}
+                                                options={AdminStatusOptions}
+                                                placeholder="Select Status"
+                                                className="select2-single select2-red"
+                                            />
+                                        </div>
+                                        <div className="form-group col-md-3 mt-4">
+                                            
+                                        <button type="submit" onClick={handleSubmit} className='btn btn-yellow border-white text-white col-md-12'>Save</button>
+
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            
+                            </div>
+                        </div>
                                 {/* Add more sections as needed */}
                             </div>
                         </div>

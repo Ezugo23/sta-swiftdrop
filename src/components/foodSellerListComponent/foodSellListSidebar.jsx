@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 export default function FoodSellListSidebar()  {
-    const { slug } = useParams();
+    const { id } = useParams();
   return (
     <div>
   
@@ -11,7 +11,7 @@ export default function FoodSellListSidebar()  {
           <div className='between-flex'>
             <img src="/public/profile-logo.svg" />
             <div style={{fontSize: "13px", marginLeft: "15px"}}>
-              <span style={{fontWeight: "700"}}>{slug}</span> <br/> <span>Restaurant</span>
+              <span style={{fontWeight: "700"}}>{}</span> <br/> <span>Restaurant</span>
             </div>
           </div>
           <div className='three-dot'>
@@ -23,7 +23,7 @@ export default function FoodSellListSidebar()  {
         <div className="card-body p-0 m-0">
           <ul className="nav flex-column nav-pills m-0">
             <li className="nav-item">
-              <Link to="/food-seller-list/:slug" className="nav-link thumb">
+              <Link to={`/food-seller-list/${id}`} className="nav-link thumb">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
               <path fillRule="evenodd" clipRule="evenodd" d="M7.00004 8.08333C5.74961 8.08333 4.59417 7.41623 3.96895 6.33333C3.34374 5.25042 3.34374 3.91623 3.96895 2.83333C4.59417 1.75042 5.74961 1.08333 7.00004 1.08333C8.93304 1.08333 10.5 2.65033 10.5 4.58333C10.5 6.51632 8.93304 8.08333 7.00004 8.08333ZM11.6667 13.3333H10.5V12.1667C10.5 11.2002 9.71654 10.4167 8.75004 10.4167H5.25004C4.28354 10.4167 3.50004 11.2002 3.50004 12.1667V13.3333H2.33337V12.1667C2.33337 10.5558 3.63921 9.25 5.25004 9.25H8.75004C10.3609 9.25 11.6667 10.5558 11.6667 12.1667V13.3333ZM9.33337 4.58333C9.33337 5.87199 8.2887 6.91666 7.00004 6.91666C5.71138 6.91666 4.66671 5.87199 4.66671 4.58333C4.66671 3.29466 5.71138 2.24999 7.00004 2.24999C8.2887 2.24999 9.33337 3.29466 9.33337 4.58333Z" fill="black"/>
               </svg>
