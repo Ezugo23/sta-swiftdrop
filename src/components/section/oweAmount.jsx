@@ -13,7 +13,7 @@ export default function oweAmountSection() {
         setAuthenticated(true);
       } else {
         // If token is not present, redirect the user to the login page
-        navigate('/SuperLogin');
+        navigate('/');
       }
     }, [history]);
 

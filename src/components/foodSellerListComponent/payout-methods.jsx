@@ -5,6 +5,7 @@ import FoodSellListSidebar from "./foodSellListSidebar";
 
 import { useState } from 'react';
 import Select from 'react-select';
+import {  useParams } from 'react-router-dom';
 // Assuming you have a RadioInputWithLabel component
 const RadioInputWithLabel = ({ label, name, value, checked, onChange }) => (
     <div className="form-check">
@@ -25,6 +26,7 @@ const RadioInputWithLabel = ({ label, name, value, checked, onChange }) => (
 
 export default function PayoutMethodsComponent() {
     const [numberInput, setNumberInput] = useState('');
+    const { id } = useParams();
 
   const handleNumberChange = (e) => {
     let inputValue = e.target.value;
@@ -113,7 +115,7 @@ export default function PayoutMethodsComponent() {
                     </div>
                     
                     <div className="col-12 col-xl-4">
-                        <FoodSellListSidebar />
+                        <FoodSellListSidebar id={id}/>
                     </div>
                     <div className="col-12 col-xl-8">
                         <form role="form">

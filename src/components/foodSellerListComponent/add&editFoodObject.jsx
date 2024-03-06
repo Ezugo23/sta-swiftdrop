@@ -5,11 +5,13 @@ import FoodSellListSidebar from "./foodSellListSidebar";
 
 import { useState } from 'react';
 import Select from 'react-select';
+import { useParams } from 'react-router-dom';
 
 
 export default function AddEditFoodObjectComponent() {
   const [zipcode, setZipcode] = useState('');
   const [logoUrl, setLogoUrl] = useState('/public/logo2.svg');
+  const { id } = useParams();
 
   const handleZipcodeChange = (e) => {
     const value = e.target.value;
@@ -99,7 +101,7 @@ export default function AddEditFoodObjectComponent() {
                    
             <div className="row">
       <div className="col-12 col-xl-4">
-        <FoodSellListSidebar />
+        <FoodSellListSidebar id={id}/>
       </div>
       <div className="col-12 col-xl-8">
         <form role="form">

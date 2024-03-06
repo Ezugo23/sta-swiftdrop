@@ -48,7 +48,7 @@ export default function FoodSellListSidebar()  {
               </Link>
             </li> */}
             <li className="nav-item mt-3">
-              <Link to="/food-seller-list/add-and-edit-food" className="nav-link thumb">
+              <Link to={`/food-seller-list/add-and-edit-food/${id}`} className="nav-link thumb">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
     <path fillRule="evenodd" clipRule="evenodd" d="M14 1.33334V14.6667H12.6667V10H10V5.33334C10 3.1242 11.7909 1.33334 14 1.33334ZM12.6667 3.02C12.1133 3.33334 11.3333 4.11334 11.3333 5.33334V8.66667H12.6667V3.02ZM6 14.6667V9.26667C7.55194 8.94935 8.66647 7.58405 8.66667 6V2H7.33333V6.66667H6V2H4.66667V6.66667H3.33333V2H2V6C2.00019 7.58405 3.11473 8.94935 4.66667 9.26667V14.6667H6Z" fill="black"/>
   </svg>
@@ -64,7 +64,7 @@ export default function FoodSellListSidebar()  {
               </Link>
             </li> */}
             <li className="nav-item">
-              <Link to="/food-seller-list/product" className="nav-link thumb">
+              <Link to={`/food-seller-list/product/${id}`} className="nav-link thumb">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
     <path fillRule="evenodd" clipRule="evenodd" d="M12.25 4.66667V12.2459C12.2511 12.4006 12.1907 12.5494 12.082 12.6596C11.9734 12.7698 11.8255 12.8323 11.6707 12.8333H2.32925C2.00957 12.8333 1.75032 12.5743 1.75 12.2547V1.74533C1.75 1.43208 2.01192 1.16667 2.3345 1.16667H8.74825L12.25 4.66667ZM11.0833 5.25H8.16667V2.33333H2.91667V11.6667H11.0833V5.25ZM6.41667 4.08333H4.66667V5.25H6.41667V4.08333ZM4.66667 6.41667H9.33333V7.58333H4.66667V6.41667ZM9.33333 8.75H4.66667V9.91667H9.33333V8.75Z" fill="black"/>
   </svg>
@@ -72,23 +72,15 @@ export default function FoodSellListSidebar()  {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/food-seller-list/coupons" className="nav-link thumb">
+              <Link to={`/food-seller-list/coupons/${id}`} className="nav-link thumb">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
     <path fillRule="evenodd" clipRule="evenodd" d="M1.33337 2.66667V6.33333C2.25385 6.33333 3.00004 7.07953 3.00004 8C3.00004 8.92048 2.25385 9.66667 1.33337 9.66667V13.3333C1.33337 13.7015 1.63185 14 2.00004 14H14C14.3682 14 14.6667 13.7015 14.6667 13.3333V9.66667C13.7462 9.66667 13 8.92048 13 8C13 7.07953 13.7462 6.33333 14.6667 6.33333V2.66667C14.6667 2.29848 14.3682 2 14 2H2.00004C1.63185 2 1.33337 2.29848 1.33337 2.66667ZM4.33455 8C4.33455 6.85987 3.68827 5.81828 2.66671 5.312V3.33333H13.3334V5.312C12.3118 5.81828 11.6655 6.85987 11.6655 8C11.6655 9.14013 12.3118 10.1817 13.3334 10.688V12.6667H2.66671V10.688C3.68827 10.1817 4.33455 9.14013 4.33455 8ZM6.00004 6H10V7.33333H6.00004V6ZM10 8.66667H6.00004V10H10V8.66667Z" fill="black"/>
   </svg>
                 <span style={{paddingLeft: "8px"}}>Coupons</span>
               </Link>
             </li>
-            {/* <li className="nav-item">
-              <Link to={{ name: 'setup.general' }} className="nav-link thumb">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path fillRule="evenodd" clipRule="evenodd" d="M8.00004 14.6667C4.31804 14.6667 1.33337 11.682 1.33337 8C1.33337 4.318 4.31804 1.33334 8.00004 1.33334C11.682 1.33334 14.6667 4.318 14.6667 8C14.6667 11.682 11.682 14.6667 8.00004 14.6667ZM8.00004 13.3333C10.9456 13.3333 13.3334 10.9455 13.3334 8C13.3334 5.05448 10.9456 2.66667 8.00004 2.66667C5.05452 2.66667 2.66671 5.05448 2.66671 8C2.66671 10.9455 5.05452 13.3333 8.00004 13.3333ZM11.3334 8H8.66671V4.66667H7.33337V9.33334H11.3334V8Z" fill="black"/>
-                </svg>
-                <span style={{paddingLeft: "8px"}}>Manage Preparation Time</span>
-              </Link>
-            </li> */}
             <li className="nav-item">
-              <Link to="/food-seller-list/manage-work-days" className="nav-link thumb">
+              <Link to={`/food-seller-list/manage-work-days/${id}`} className="nav-link thumb">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path fillRule="evenodd" clipRule="evenodd" d="M11.334 2.00001H14.0007C14.3688 2.00001 14.6673 2.29848 14.6673 2.66667V13.3333C14.6673 13.7015 14.3688 14 14.0007 14H2.00065C1.63246 14 1.33398 13.7015 1.33398 13.3333V2.66667C1.33398 2.29848 1.63246 2.00001 2.00065 2.00001H4.66732V0.666672H6.00065V2.00001H10.0007V0.666672H11.334V2.00001ZM10.0007 3.33334H6.00065V4.66667H4.66732V3.33334H2.66732V6H13.334V3.33334H11.334V4.66667H10.0007V3.33334ZM2.66732 7.33334H13.334V12.6667H2.66732V7.33334Z" fill="black"/>
                 </svg>
@@ -96,7 +88,7 @@ export default function FoodSellListSidebar()  {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/food-seller-list/all-reviews" className="nav-link thumb">
+              <Link to={`/food-seller-list/all-reviews/${id}`} className="nav-link thumb">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path fillRule="evenodd" clipRule="evenodd" d="M11.334 2.00001H14.0007C14.3688 2.00001 14.6673 2.29848 14.6673 2.66667V13.3333C14.6673 13.7015 14.3688 14 14.0007 14H2.00065C1.63246 14 1.33398 13.7015 1.33398 13.3333V2.66667C1.33398 2.29848 1.63246 2.00001 2.00065 2.00001H4.66732V0.666672H6.00065V2.00001H10.0007V0.666672H11.334V2.00001ZM10.0007 3.33334H6.00065V4.66667H4.66732V3.33334H2.66732V6H13.334V3.33334H11.334V4.66667H10.0007V3.33334ZM2.66732 7.33334H13.334V12.6667H2.66732V7.33334Z" fill="black"/>
                 </svg>
@@ -106,7 +98,7 @@ export default function FoodSellListSidebar()  {
 
             <hr/>
             <li className="nav-item">
-              <Link to="/food-seller-list/payout-methods" className="nav-link thumb">
+              <Link to={`/food-seller-list/payout-methods/${id}`} className="nav-link thumb">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path fillRule="evenodd" clipRule="evenodd" d="M11.334 2.00001H14.0007C14.3688 2.00001 14.6673 2.29848 14.6673 2.66667V13.3333C14.6673 13.7015 14.3688 14 14.0007 14H2.00065C1.63246 14 1.33398 13.7015 1.33398 13.3333V2.66667C1.33398 2.29848 1.63246 2.00001 2.00065 2.00001H4.66732V0.666672H6.00065V2.00001H10.0007V0.666672H11.334V2.00001ZM10.0007 3.33334H6.00065V4.66667H4.66732V3.33334H2.66732V6H13.334V3.33334H11.334V4.66667H10.0007V3.33334ZM2.66732 7.33334H13.334V12.6667H2.66732V7.33334Z" fill="black"/>
                 </svg>
@@ -114,7 +106,7 @@ export default function FoodSellListSidebar()  {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/food-seller-list/all-reviews" className="nav-link thumb">
+              <Link to={`/food-seller-list/all-reviews/${id}`} className="nav-link thumb">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path fillRule="evenodd" clipRule="evenodd" d="M11.334 2.00001H14.0007C14.3688 2.00001 14.6673 2.29848 14.6673 2.66667V13.3333C14.6673 13.7015 14.3688 14 14.0007 14H2.00065C1.63246 14 1.33398 13.7015 1.33398 13.3333V2.66667C1.33398 2.29848 1.63246 2.00001 2.00065 2.00001H4.66732V0.666672H6.00065V2.00001H10.0007V0.666672H11.334V2.00001ZM10.0007 3.33334H6.00065V4.66667H4.66732V3.33334H2.66732V6H13.334V3.33334H11.334V4.66667H10.0007V3.33334ZM2.66732 7.33334H13.334V12.6667H2.66732V7.33334Z" fill="black"/>
                 </svg>

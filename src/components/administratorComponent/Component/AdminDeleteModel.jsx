@@ -3,41 +3,20 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 
-function DeleteModal({setShow, userId}) {
-
-    const handleDelete =  async () =>{
-      
-        
-        await axios.delete(`https://swifdropp.onrender.com/api/v1/admin/${userId}/delete`)
-        .then((res) => {
-            console.log(res);
-            setShow(false)
-            window.location.reload()
-        })
-        .catch(err => console.log(err))
-    
-      }
-
+function DeleteModal({ setShow, handleDelete }) {
   return (
-    <div
-      className="modal show"
-      style={{ display: 'block', position: 'absolute' }}
-    >
-      <Modal.Dialog>
-        <Modal.Header >
-          <Modal.Title>Modal title</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          <p>Are you sure you want to delete this user</p>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <Button onClick={() => setShow(false)} variant="secondary">Cancel</Button>
-          <Button onClick={() => handleDelete()} variant="primary">Delete User</Button>
-        </Modal.Footer>
-      </Modal.Dialog>
-    </div>
+    <Modal show={true} onHide={() => setShow(false)}>
+      <Modal.Header closeButton>
+        <Modal.Title>Delete User</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <p>Are you sure you want to delete this user?</p>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={() => setShow(false)}>Cancel</Button>
+        <Button variant="primary" onClick={handleDelete}>Delete User</Button>
+      </Modal.Footer>
+    </Modal>
   );
 }
 

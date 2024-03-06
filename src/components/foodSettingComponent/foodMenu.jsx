@@ -133,6 +133,7 @@ import { useNavigate } from 'react-router-dom';
                     <th>#</th>
                     <th>Image</th>
                     <th>Title</th>
+                    <th>N.O.I</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
@@ -146,6 +147,7 @@ import { useNavigate } from 'react-router-dom';
                           <img src={item.image} alt="" style={{ width: '48px', height: '45px', borderRadius: '20px' }} />
                         </td>
                         <td>{item.title}</td>
+                        <td>{item.numberOfItems}</td>
                         <td>
                           <Form.Check
                             type="switch"

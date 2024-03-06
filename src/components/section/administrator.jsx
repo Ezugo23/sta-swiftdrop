@@ -16,7 +16,7 @@ export default function AdministratorSection() {
       setAuthenticated(true);
     } else {
       // If token is not present, redirect the user to the login page
-      navigate('/SuperLogin');
+      navigate('/');
     }
   }, [history]);
 
@@ -41,7 +41,7 @@ export default function AdministratorSection() {
                 <Routes>
                     <Route path="" element={<AdminAllUsers/>} />
                     <Route path="AdminEditUsers/:adminId" element={<AdminEditUsers/>} />
-                    <Route path="AdminUsersChangePass" element={<AdminUsersChangePass />} />
+                    <Route path="AdminUsersChangePass/:adminId" element={<AdminUsersChangePass />} />
                     </Routes>
                     </>
                 )}

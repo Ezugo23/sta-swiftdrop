@@ -1,6 +1,6 @@
 import FoodSellListSidebar from "./foodSellListSidebar";
 import { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import React Router Link
+import { Link, useParams } from 'react-router-dom'; // Import React Router Link
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 //import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from 'react';
@@ -12,7 +12,7 @@ import Select from 'react-select';
 //import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 export default function CouponsComponent() {
-    
+    const { id } = useParams();
 
 
 
@@ -153,7 +153,7 @@ export default function CouponsComponent() {
                         </div> 
                     </div>
                     <div className="col-12 col-xl-4">
-                        <FoodSellListSidebar />
+                        <FoodSellListSidebar id={id}/>
                     </div>
                     <div className="col-12 col-xl-8">
                         <div className="card custom-card w-100 mb-3">

@@ -44,7 +44,7 @@ export default function FoodSellerCustomerComponent() {
     try {
       console.log('Submitting data:', restaurant);
       const response = await fetch(`https://swifdropp.onrender.com/api/v1/restaurant/${id}`, {
-        method: 'PUT',
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -76,7 +76,7 @@ export default function FoodSellerCustomerComponent() {
   return (
     <div className="row">
       <div className="col-12 col-xl-4">
-        <FoodSellListSidebar />
+        <FoodSellListSidebar id={id}/>
       </div>
       <div className="col-12 col-xl-8">
         <form role="form" onSubmit={handleFormSubmit}>

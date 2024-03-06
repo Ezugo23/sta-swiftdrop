@@ -46,7 +46,7 @@ const SideNav = ({adminId}) => {
            to={`/administrators/AdminEditUsers/${adminId}`}
             className='link'> <p className='linkpara'>Personal Information</p></Link>
             <Link 
-            to={`/administrators/AdminUsersChangePass`}
+            to={`/administrators/AdminUsersChangePass/${adminId}`}
              className='link'><p className='linkpara'>
               {/* <img src={cp} alt="" className='imgw'/> */}
              Change Password</p></Link>

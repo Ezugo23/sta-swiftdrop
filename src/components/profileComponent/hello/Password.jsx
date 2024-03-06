@@ -25,12 +25,44 @@ export default function Password() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (newPassword !== confirmPassword) {
-      alert('New password and confirm password must match');
+  
+    // Validation checks
+    if (!newPassword || newPassword.length < 8) {
+      setModalMessage('New password must be at least 8 characters long');
+      setModalShow(true);
       return;
     }
-
+  
+    if (!/[A-Z]/.test(newPassword)) {
+      setModalMessage('New password must contain at least one uppercase letter');
+      setModalShow(true);
+      return;
+    }
+  
+    if (!/[a-z]/.test(newPassword)) {
+      setModalMessage('New password must contain at least one lowercase letter');
+      setModalShow(true);
+      return;
+    }
+  
+    if (!/\d/.test(newPassword)) {
+      setModalMessage('New password must contain at least one number');
+      setModalShow(true);
+      return;
+    }
+  
+    if (!/[^\w\s]/.test(newPassword)) {
+      setModalMessage('New password must contain at least one symbol');
+      setModalShow(true);
+      return;
+    }
+  
+    if (newPassword !== confirmPassword) {
+      setModalMessage('New password and confirm password must match');
+      setModalShow(true);
+      return;
+    }
+  
     try {
       const response = await fetch('https://swifdropp.onrender.com/api/v1/company/changepassword/6581527dc96a438562098fef', {
         method: 'POST',
@@ -42,13 +74,13 @@ export default function Password() {
           newPassword,
         }),
       });
-
+  
       if (response.ok) {
         setModalMessage('Password changed successfully');
         setModalShow(true);
       } else {
         const errorData = await response.json();
-
+  
         if (errorData.errorDetails && errorData.errorDetails.length > 0) {
           const errorMessage = errorData.errorDetails[0];
           setModalMessage(`Failed to change password. Error: ${errorMessage}`);
@@ -56,7 +88,7 @@ export default function Password() {
           const errorMessage = errorData.message || 'Unknown error occurred';
           setModalMessage(`Failed to change password. Error: ${errorMessage}`);
         }
-
+  
         setModalShow(true);
       }
     } catch (error) {
