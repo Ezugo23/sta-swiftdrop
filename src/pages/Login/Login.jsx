@@ -88,7 +88,7 @@ export default function Login() {
                                 <div>
                                     <input type="checkbox" /> <label htmlFor="">Remember me</label>
                                 </div>
-                                <Link to='/forgotpassword'>Forgot Password?</Link>
+                                <Link to='/SuperPassword'>Forgot Password?</Link>
                             </div>
                             {error && <div className="text-danger">{error}</div>}
                             <div className='text-center'>
@@ -97,7 +97,7 @@ export default function Login() {
                         </form>
                         <div className="text-center d-flex justify-content-between justify-content-lg-center ">
                             <h5>Don't have an account?</h5>
-                            <Link to='/Register'><h5>Create free account</h5></Link>
+                            <Link to='/SuperRegister'><h5>Create free account</h5></Link>
                         </div>
                     </div>
                 </div>

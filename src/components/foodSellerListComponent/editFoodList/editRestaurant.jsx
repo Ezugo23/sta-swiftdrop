@@ -39,32 +39,30 @@ export default function FoodSellerCustomerComponent() {
 
 ;
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      console.log('Submitting data:', restaurant);
-      const response = await fetch(`https://swifdropp.onrender.com/api/v1/restaurant/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ restaurant }),
-      });
-      console.log('API Response:', response);
-      
-      if (response.ok) {
-        console.log(' successfully updated');
-        // redirect to all 
-        navigate('/food-seller-list');
-   
-      } else {
-        console.error('Failed to update task');
-            }
-    } catch (error) {
-      console.error('Error updating task:', error);
-      
+const handleFormSubmit = async (event) => {
+  event.preventDefault();
+  try {
+    console.log('Submitting data:', restaurant);
+    const response = await fetch(`https://swifdropp.onrender.com/api/v1/restaurant/byId/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(restaurant), // Sending just the restaurant object
+    });
+    console.log('API Response:', response);
+    
+    if (response.ok) {
+      console.log('Successfully updated');
+      // Redirect to all
+      navigate('/food-seller-list');
+    } else {
+      console.error('Failed to update');
     }
-  };
+  } catch (error) {
+    console.error('Error updating:', error);
+  }
+};
   
 
 
@@ -79,7 +77,7 @@ export default function FoodSellerCustomerComponent() {
         <FoodSellListSidebar />
       </div>
       <div className="col-12 col-xl-8">
-        <form role="form" onSubmit={handleFormSubmit}>
+        <form role="form" >
           <div className="card-body">
             <div className="card inner-card mb-3">
               <div className="card-header bg-white">Restaurant Information</div>
@@ -176,7 +174,7 @@ export default function FoodSellerCustomerComponent() {
                   </button>
                 </div>
                 <div className="form-group col-md-6 end-flex">
-                  <button type="submit" className="btn btn-success col-md-6">
+                  <button type="submit" className="btn btn-success col-md-6" onClick={handleFormSubmit}>
                     Submit
                   </button>
                 </div>

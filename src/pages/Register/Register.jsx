@@ -24,7 +24,7 @@ export default function Register() {
   useEffect(() => {
     const timer = setTimeout(() => {
         setPasswordStrength("");
-    }, 2000);
+    }, 1000);
 
     // Clear timeout if the component is unmounted or passwordStrength changes
     return () => clearTimeout(timer);

@@ -4,12 +4,13 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { useParams } from 'react-router-dom';
 import Select from 'react-select';
 
 
 export default function AllReviewsComponent() {
     
-
+const {id} = useParams()
 
 
     
@@ -123,7 +124,7 @@ export default function AllReviewsComponent() {
                         </div> 
                     </div>
                     <div className="col-12 col-xl-4">
-                        <FoodSellListSidebar />
+                        <FoodSellListSidebar id={id}/>
                     </div>
                     <div className="col-12 col-xl-8">
                         <div className="card custom-card w-100 mb-3">

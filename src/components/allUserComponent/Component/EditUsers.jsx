@@ -12,12 +12,12 @@ const EditUsers = () => {
   const [email, setEmail] = useState('');
   const { userId } = useParams();
   const [image, setImage] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`https://swifdropp.onrender.com/api/v1/user/profile/${userId}`);
-        console.log(response.data.user);
         setFirstName(response.data.user.firstname);
         setImage(response.data.user.image);
         setLastName(response.data.user.lastname);
@@ -33,20 +33,25 @@ const EditUsers = () => {
   }, [userId]);
 
   const handleUpdate = async () => {
-    const editBody = {
-      firstname,
-      lastname,
-      address,
-      phoneNumber,
-      email
-    };
-
     try {
-      await axios.patch(`https://swifdropp.onrender.com/api/v1/user/profile/update/${userId}`, editBody);
-      // Optionally, you can fetch updated user data here and update state accordingly
-      console.log('User data updated successfully');
+      const response = await axios.patch(
+        `https://swifdropp.onrender.com/api/v1/admin/${adminId}`,
+        {
+          firstname: firstname,
+          lastname: lastname,
+          username: username,
+          email: email,
+          phoneNumber: phoneNumber.toString()
+        }
+      );
+  
+      console.log("Admin user updated successfully", response.data);
+      // Redirect or perform any other action after successful update
+      navigate('/administrators');
     } catch (error) {
-      console.error('Error updating user data:', error);
+      console.error("Error updating admin user", error);
+      // Display an error message to the user
+      alert("Failed to update admin user. Please try again later.");
     }
   };
 
@@ -82,14 +87,7 @@ const EditUsers = () => {
               <input type="text" placeholder='' className='w-100 p-2' value={email} onChange={(e) => setEmail(e.target.value)} />
               <label htmlFor="" className='py-3'>Phone Number</label>
               <input type="number" placeholder='' className='w-100 p-2' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
-              <label htmlFor="" className='py-3'>Address</label>
-              <input type="text" placeholder='' className='w-100 p-2' value={address} onChange={(e) => setAddress(e.target.value)} />
-              <label htmlFor="" className='label'>Status</label>
-              <select className='w-100 select'>
-                <option value="Active">Active</option>
-                <option value="Suspend">Suspend</option>
-              </select>
-              <div className='btndiv'>
+              <div className='btndiv' style={{marginTop:'20px'}}>
                 <div>
                   <button className='btn1'>Delete</button>
                 </div>

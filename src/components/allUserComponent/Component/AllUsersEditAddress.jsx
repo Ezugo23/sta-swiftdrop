@@ -8,6 +8,7 @@ import SideNav from './SideNav'
 import '../Style/AllUsersEditAddress.css'
 import { Link, useParams  } from 'react-router-dom';
 import axios from 'axios';
+import { Pencil, Trash2Icon } from 'lucide-react';
 
 const AllUsersEditAddress = () => {
   const [addressData, setAddressData] = useState([]);
@@ -58,9 +59,9 @@ const AllUsersEditAddress = () => {
                       <td className='tdr'>
                         <input type='radio' name='btn' /> <label htmlFor=''>Primary</label>
                       </td>
-                      <td className='td'>
-                        <button className='btn'>Edit</button>
-                        <button className='btn'>Delete</button>
+                      <td className='td' style={{display:'flex', justifyContent:'space-around'}}>
+                      <p className='' style={{marginTop:'10px', cursor:'pointer'}}>  <Pencil size={25}/></p>
+                        <p className='' style={{marginTop:'10px', cursor:'pointer'}}> <Trash2Icon size={25}/></p>
                       </td>
                     </tr>
                   ))}

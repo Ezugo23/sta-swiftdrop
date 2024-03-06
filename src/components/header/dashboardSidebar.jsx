@@ -1,24 +1,17 @@
 /* eslint-disable react/prop-types */
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import { MobileView } from 'react-device-detect';
-export default function DashbaordSidebar(props) {
+export default function DashboardSidebar(props) {
     const navigate = useNavigate(); // Initialize useHistory hook
 
-    // Function to handle logout
     const handleLogout = () => {
-        // Check if the user is logged in as superadmin or admin
-        const isAdmin = localStorage.getItem('isAdmin') === 'true';
-
         // Clear user authentication token from localStorage or wherever it's stored
         localStorage.removeItem('token');
-        
-        // Redirect the user to the appropriate login page based on their role
-        if (isAdmin) {
-            navigate('/Login');
-        } else  {
-            navigate('/superLogin');
-        }
+            
+        // Redirect the user to the MainDashboard
+        navigate('/');
     };
+
     return (
 
         <>
@@ -73,9 +66,6 @@ export default function DashbaordSidebar(props) {
                                         <li><Link to="/administrators" className="nav-link d-flex align-items-center gap-2" style={{ color: `${props.nav_item_color3}` }}><svg xmlns="http://www.w3.org/2000/svg" width="13" height="1" viewBox="0 0 13 1" fill="none">
                                                 <path d="M0.5 0.5H12.5" stroke="black" strokeWidth="0.5" strokeLinecap="square"/>
                                             </svg>Administrators</Link></li>
-                                        <li><Link to="/operators" className="nav-link d-flex align-items-center gap-2" style={{ color: `${props.nav_item_color4}` }}><svg xmlns="http://www.w3.org/2000/svg" width="13" height="1" viewBox="0 0 13 1" fill="none">
-                                                <path d="M0.5 0.5H12.5" stroke="black" strokeWidth="0.5" strokeLinecap="square"/>
-                                            </svg>Operators</Link></li>
                                         <li><Link to="/all-user" className="nav-link d-flex align-items-center gap-2" style={{ color: `${props.nav_item_color5}` }}><svg xmlns="http://www.w3.org/2000/svg" width="13" height="1" viewBox="0 0 13 1" fill="none">
                                                 <path d="M0.5 0.5H12.5" stroke="black" strokeWidth="0.5" strokeLinecap="square"/>
                                             </svg>All Users</Link></li>
@@ -175,7 +165,7 @@ export default function DashbaordSidebar(props) {
                             </li>
 
                             <li className="nav-item">
-                                <a onClick={handleLogout} className="nav-link d-flex align-items-center gap-2 " style={{cursor: 'pointer', color: `${props.nav_item_color14}`  }}>
+                            <a onClick={handleLogout} className="nav-link d-flex align-items-center gap-2 " style={{cursor: 'pointer', color: `${props.nav_item_color14}`  }}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                         <path fillRule="evenodd" clipRule="evenodd" d="M2.21276 9.94C1.92517 11.2983 1.92517 12.7017 2.21276 14.06C3.32276 13.929 4.29176 14.296 4.60876 15.061C4.92576 15.826 4.49976 16.772 3.62276 17.464C4.3798 18.6277 5.37209 19.62 6.53576 20.377C7.22876 19.499 8.17376 19.074 8.93876 19.391C9.70276 19.707 10.0698 20.677 9.93976 21.787C11.298 22.0746 12.7015 22.0746 14.0598 21.787C13.9288 20.677 14.2958 19.708 15.0608 19.391C15.8258 19.074 16.7718 19.5 17.4638 20.377C18.6274 19.62 19.6197 18.6277 20.3768 17.464C19.4988 16.771 19.0738 15.826 19.3908 15.061C19.7068 14.297 20.6768 13.93 21.7868 14.06C22.0744 12.7017 22.0744 11.2983 21.7868 9.94C20.6768 10.071 19.7078 9.704 19.3908 8.939C19.0738 8.174 19.4998 7.228 20.3768 6.536C19.6197 5.37233 18.6274 4.38004 17.4638 3.623C16.7708 4.501 15.8258 4.926 15.0608 4.609C14.2968 4.293 13.9298 3.323 14.0598 2.213C12.7015 1.92541 11.298 1.92541 9.93976 2.213C10.0708 3.323 9.70376 4.292 8.93876 4.609C8.17376 4.926 7.22776 4.5 6.53576 3.623C5.37209 4.38004 4.3798 5.37233 3.62276 6.536C4.50076 7.229 4.92576 8.174 4.60876 8.939C4.29276 9.703 3.32276 10.07 2.21276 9.94ZM6.45676 14.296C6.00676 13.212 5.09976 12.515 3.99976 12.21C3.99576 12.07 3.99576 11.93 3.99976 11.79C5.09976 11.485 6.00676 10.788 6.45676 9.704C6.90476 8.619 6.75676 7.485 6.19476 6.492C6.29076 6.39 6.38976 6.291 6.49176 6.195C7.48376 6.757 8.61876 6.906 9.70376 6.457C10.7878 6.007 11.4848 5.1 11.7898 4C11.9297 3.99629 12.0698 3.99629 12.2098 4C12.5148 5.1 13.2118 6.007 14.2958 6.457C15.3808 6.905 16.5148 6.757 17.5078 6.195C17.6094 6.29136 17.7084 6.3904 17.8048 6.492C17.2428 7.484 17.0938 8.619 17.5428 9.704C17.9928 10.788 18.8998 11.485 19.9998 11.79C20.0038 11.93 20.0038 12.07 19.9998 12.21C18.8998 12.515 17.9928 13.212 17.5428 14.296C17.0948 15.381 17.2428 16.515 17.8048 17.508C17.7088 17.61 17.6098 17.709 17.5078 17.805C16.5158 17.243 15.3808 17.094 14.2958 17.543C13.2118 17.993 12.5148 18.9 12.2098 20C12.0698 20.004 11.9298 20.004 11.7898 20C11.4848 18.9 10.7878 17.993 9.70376 17.543C8.61876 17.095 7.48476 17.243 6.49176 17.805C6.38976 17.709 6.29076 17.61 6.19476 17.508C6.75676 16.516 6.90576 15.381 6.45676 14.296ZM11.9998 15C10.3429 15 8.99976 13.6569 8.99976 12C8.99976 10.3431 10.3429 9 11.9998 9C13.6566 9 14.9998 10.3431 14.9998 12C14.9998 13.6569 13.6566 15 11.9998 15ZM12.9998 12C12.9998 12.5523 12.552 13 11.9998 13C11.4475 13 10.9998 12.5523 10.9998 12C10.9998 11.4477 11.4475 11 11.9998 11C12.552 11 12.9998 11.4477 12.9998 12Z" fill="black"/>
                                     </svg>

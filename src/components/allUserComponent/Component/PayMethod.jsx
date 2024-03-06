@@ -1,13 +1,15 @@
 import React from "react";
 import SideNav from "./SideNav";
 import "../Style/PayMethod.css";
+import { useParams } from 'react-router-dom';
 
 const PayMethod = () => {
+  const { userId } = useParams();
   return (
     <div className="">
       <h5 className="my-5">All Users / Payment Method</h5>
       <div className="d-flex gap-5 mb-5">
-        <SideNav />
+      <SideNav userId={userId} />
         <div>
           <div className="paymentdiv">
             <h4>PayPal</h4>

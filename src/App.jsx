@@ -48,6 +48,7 @@ import ManageWorkDaysPage from "./pages/food-seller-list/manageWorkDays";
 import AllReviewsPage from "./pages/food-seller-list/allReviews";
 import SuperRegister from "./pages/Register/Register";
 import SuperLogin from "./pages/Login/Login"
+import SuperPassword from "./pages/SuperForgotPass/ForgotPass"
 import { Toaster } from 'react-hot-toast';
 import EditFoodSellerCustomerPage from './pages/food-seller-list/editFoodListPage/foodSellerCustomer';
 import FoodSellerCustomerComponent from "./components/foodSellerListComponent/product";
@@ -110,7 +111,7 @@ export default function App() {
           />
           <Route 
             exact
-            path="/food-seller-list/"
+            path="/food-seller-list/*"
             element={<FoodSellerListPage />}
           />
          <Route
@@ -127,38 +128,38 @@ export default function App() {
 
           <Route 
             exact
-            path="/food-seller-list/add-and-edit-food"
+            path="/food-seller-list/add-and-edit-food/:id"
             element={<AddEditFoodObjectPage />}
           />
           <Route 
             exact
-            path="/food-seller-list/product"
+            path="/food-seller-list/product/:id"
             element={<ProductPage />}
           />
           <Route 
             exact
-            path="/food-seller-list/product/edit"
+            path="/food-seller-list/product/edit/:id"
             element={<ProductEditPage />}
           />
           <Route 
             exact
-            path="/food-seller-list/coupons"
+            path="/food-seller-list/coupons/:id"
             element={<CouponsPage />}
           />
           <Route 
             exact
-            path="/food-seller-list/coupons/edit"
+            path="/food-seller-list/coupons/edit/:id"
             element={<CouponsEditPage />}
           />
 
           <Route 
             exact
-            path="/food-seller-list/manage-work-days"
+            path="/food-seller-list/manage-work-days/:id"
             element={<ManageWorkDaysPage />}
           />
           <Route 
             exact
-            path="/food-seller-list/all-reviews"
+            path="/food-seller-list/all-reviews/:id"
             element={<AllReviewsPage />}
           />
 
@@ -212,6 +213,11 @@ export default function App() {
             exact
             path="/SuperLogin"
             element={<SuperLogin />}
+          />
+          <Route 
+            exact
+            path="/SuperPassword"
+            element={<SuperPassword />}
           />
           <Route 
             exact

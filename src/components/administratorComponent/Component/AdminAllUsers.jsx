@@ -5,8 +5,9 @@ import "../Style/Allusers.css";
 // import edit from "../assets/Edit (2).jpg";`
 import { Link } from "react-router-dom";
 import axios from "axios";
-import DeleteModel from "./AdminDeleteModel";
+import DeleteModel from "./AdminDeleteModel"
 import Search from "./AdminSearch";
+import { Pencil, Trash2Icon, ThumbsUp, ThumbsDown } from 'lucide-react';
 
 const AllUsers = (_id) => {
   const [data, setData] = useState([]);
@@ -36,9 +37,23 @@ const AllUsers = (_id) => {
     getData();
   }, []);
 
-  const handleDelete = async (userId) => {
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`https://swifdropp.onrender.com/api/v1/admin/${userId}/delete`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      getData(); // Refresh data after deletion
+      setShow(false); // Hide modal after deletion
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const openDeleteModal = (userId) => {
     setShow(true);
-    setUserId(userId)
+    setUserId(userId);
   };
 
   return (
@@ -74,13 +89,13 @@ const AllUsers = (_id) => {
           </div>
           <div className="">
             <table className="tablediv">
+              <tbody>
               <tr>
                 <th>ID</th>
                 <th>IMAGES</th>
                 <th>NAME,ADDRESS</th>
                 <th>PHONE</th>
                 <th>EMAIL</th>
-                <th>STATUS</th>
                 <th>TOTAL PAID</th>
                 <th>ACTION</th>
               </tr>
@@ -93,53 +108,26 @@ const AllUsers = (_id) => {
                     <td>03DR456</td>
                     <td className="tableimg">
                       {" "}
-                      <img src={image} alt="" className="rounded-5 w-25" />
+                      <img src={image} alt="" className="rounded-5 w-25" style={{width:'70px', height:'70px'}} />
                     </td>
                     <td>
                       <h6>{username}</h6>
-                     <div>
-                     {/* <p>{address.country}</p>
-                     <p>{address.state}</p>
-                     <p>{address.zipCode}</p>
-                     <p>{address.city}</p>
-                     <p>{address.street}</p> */}
-                     </div>
                     </td>
-                    <td>{phoneNumber}</td>
+                    <td>{`${phoneNumber}`}</td>
                     <td>{email}</td>
-                    <td>
-                      <button className="active">Active</button>
-                    </td>
                     <td>$235.55</td>
-                    <td>
-                      <Link to={`/administrators/AdminEditUsers/${_id}`}>
-                        <button className="btn">
-                          {/* <img
-                            src={edit}
-                            alt=""
-                            className="img-w rounded-pill"
-                          /> */}
-                          Edit
-                        </button>
+                    <td style={{display:'flex', justifyContent:'space-between'}}>
+                      <Link to={`/administrators/AdminEditUsers/${_id}`}  style={{marginTop:'10px', cursor:'pointer'}}>
+                        <Pencil size={20}/>
                       </Link>
-                      <Link to="/administrators/Suspend">
-                        <button className="btn">
-                          {/* <img
-                            src={susp}
-                            alt=""
-                            className="img-w rounded-pill"
-                          /> */}
-                          Suspend
-                        </button>
-                      </Link>
-                      <button className="btn" onClick={() => handleDelete(_id)}>
-                        {/* <img src={dele} alt="" className="img-w rounded-pill" /> */}
-                        Delete
-                      </button>
+                      <p className="" onClick={() => openDeleteModal(datum._id)} style={{ marginTop: '10px', cursor: 'pointer' }}>
+                        <Trash2Icon size={20} />
+                      </p>
                     </td>
                   </tr>
                 );
               })}
+              </tbody>
             </table>
           </div>
           <div className="d-flex justify-content-between mt-5">
@@ -147,7 +135,7 @@ const AllUsers = (_id) => {
             <p>1</p>
           </div>
         </div>
-        {show && <DeleteModel setShow={setShow} userId={userId}/> }
+      {show && <DeleteModel setShow={setShow} handleDelete={handleDelete} />}
       </div>
     </>
   );

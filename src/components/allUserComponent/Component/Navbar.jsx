@@ -19,15 +19,9 @@ const Navbar = () => {
                 <p>All Users</p>
                 
             </div>
-
-        {/* <div className='leftdiv'>
-                <img src={notify} alt="" />
-                <img src={topnavimg} alt="" className='rounded-pill '/>
-                <img src={menuline} alt="" />
-            </div> */}
        </div>
         </div>
-
+         
 
         <div className="d-lg-none">
         <div className="collapse" id="navbarToggleExternalContent">
@@ -36,7 +30,7 @@ const Navbar = () => {
 <nav className="navbar navbar-dark bg-primary">
 <div className='navflex'>
   <div className="container-fluid d-flex justify-content-left">
-
+        <h2>nsheenrrj</h2>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>

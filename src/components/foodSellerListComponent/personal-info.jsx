@@ -68,7 +68,7 @@ export default function FoodSellerCustomerComponent() {
         <>
             <div className="row">
                 <div className="col-12 col-xl-4">
-                    <FoodSellListSidebar />
+                    <FoodSellListSidebar id={id} />
                 </div>
                 <div className="col-12 col-xl-8">
                     <form role="form">

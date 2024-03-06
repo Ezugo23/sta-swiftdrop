@@ -1,24 +1,23 @@
-import axios from 'axios';
-import Button from 'react-bootstrap/Button';
+import React from 'react';
 import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
+const ErrorModal = ({ show, setShow, errorMessage }) => {
+  const handleClose = () => setShow(false);
 
-function ErrorModal({ setShowModal }) {
   return (
-    <div className="modal show" style={{ display: 'block', position: 'absolute' }}>
-      <Modal show={true} onHide={() => setShowModal(false)}> {/* Control modal visibility */}
-        <Modal.Header closeButton>
-          <Modal.Title>Not Authorized</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          You are not authorized to perform this action as a superadmin.
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShow(false)}>Close</Button> {/* Close modal */}
-        </Modal.Footer>
-      </Modal>
-    </div>
+    <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+      <Modal.Header closeButton>
+        <Modal.Title>Error</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>{errorMessage}</Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
   );
-}
+};
 
 export default ErrorModal;

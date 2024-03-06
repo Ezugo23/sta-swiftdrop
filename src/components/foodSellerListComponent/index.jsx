@@ -202,15 +202,6 @@ export default function FoodSellListComponent() {
                                 </svg>
                               
                             </button>
-                              {/* <Link
-                                data-toggle="tooltip"
-                                data-placement="top"
-                                title="Suspend"
-                                to="/edit-food-seller-list" className="btn btn-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                  <path fillRule="evenodd" clipRule="evenodd" d="M14.3334 5.378L10.624 1.66667H5.37735L1.66669 5.37733V10.624L5.37735 14.3333H10.624L14.3334 10.6247V5.378ZM5.92935 3H10.0714V3.00067L13.0007 5.92933V10.072L10.0714 13.0013H5.92935L3.00069 10.072V5.93L5.92935 3ZM7.33335 10H8.66669V11.3333H7.33335V10ZM8.66669 4.66667H7.33335V8.66667H8.66669V4.66667Z" fill="black"/>
-                                </svg>
-                              </Link> */}
                             
                               
                               <button

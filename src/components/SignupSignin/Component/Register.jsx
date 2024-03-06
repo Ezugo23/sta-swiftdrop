@@ -234,7 +234,7 @@ const Register = () => {
                 </div>
           <div className="text-center d-flex justify-content-between  justify-content-lg-center ">
            <h5> Already have an account?</h5>
-            <Link to='/Login'><h5>LogIn</h5></Link>
+            <Link to='/Login'><h5 style={{color:"gold"}}>LogIn</h5></Link>
            </div>
           
         </div>

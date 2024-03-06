@@ -10,17 +10,17 @@ const ProfilePictureForm = ({adminId}) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+  
     const formData = new FormData();
-    formData.append('image', file);
-
+    formData.append('image', file[0]); // Make sure to access the first file if there are multiple files
+  
     try {
       const response = await axios.patch(`https://swifdropp.onrender.com/api/v1/admin/${adminId}/picture`, formData, {
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'multipart/form-data', // Correct content type for form data
         },
       });
-
+  
       console.log(response);
     } catch (error) {
       console.error(error.response.data);

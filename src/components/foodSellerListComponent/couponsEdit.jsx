@@ -4,12 +4,14 @@
 import FoodSellListSidebar from "./foodSellListSidebar";
 
 import { useState } from 'react';
+import {  useParams } from 'react-router-dom';
 import Select from 'react-select';
 import CheckboxWithLabel from "./checkboxWithLabel";
 import CheckboxTwoWithLabel from "./checkboxWithLabel";
 
 
 export default function CouponsEditComponent() {
+  const { id } = useParams();
   
     const discountOptions = [
       { value: 'Percentage Discount', label: 'Percentage Discount' },
@@ -95,7 +97,7 @@ export default function CouponsEditComponent() {
                    
             <div className="row">
       <div className="col-12 col-xl-4">
-        <FoodSellListSidebar />
+        <FoodSellListSidebar id={id}/>
       </div>
       <div className="col-12 col-xl-8">
         <form role="form">
